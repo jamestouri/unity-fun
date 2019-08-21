@@ -10,6 +10,9 @@ public class AddMonitorAction : MonoBehaviour {
 	public GameObject theText;
 	public GameObject theParent;
 	private GameObject button;
+	private int x;
+	private int y;
+	private int z;
 	void Start() {
 		button = this.gameObject;
 	}
@@ -20,9 +23,11 @@ public class AddMonitorAction : MonoBehaviour {
 
 	public void addAnotherText() {
 		counter++;
-		var clone = Instantiate(theText, new Vector3(186 + distance, 145, 0), Quaternion.identity) as GameObject;
-		clone.gameObject.transform.SetParent(theParent.transform);
-		distance++;
+		var clone = Instantiate(theText, new Vector3(186, 145, 0),
+		  Quaternion.identity, theParent.transform) as GameObject;
+
+		distance = distance + 100;
+		clone.transform.Translate(distance, 145, 0);
 		Text text = clone.GetComponent<Text>();
 		text.text = "hello there";
 		Debug.Log(theParent.transform);
